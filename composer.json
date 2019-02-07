@@ -35,6 +35,8 @@
         "mageplaza/module-core": "^1.4",
         "mageplaza/module-smtp": "^1.2",
         "stripeofficial/stripe-payments": "2.0.7"
+        "magento/sample-data-media": "100.3.*",
+        "magento/language-fr_fr": "100.3.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "~2.13.0",
