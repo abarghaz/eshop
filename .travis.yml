@@ -52,9 +52,15 @@ cache:
     - $HOME/yarn.lock
 before_install:
   - curl -O https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.0/elasticsearch-2.3.0.deb && sudo dpkg -i --force-confnew elasticsearch-2.3.0.deb && sudo service elasticsearch restart
+  - chmod +x dev/travis/before_install.sh
   - ./dev/travis/before_install.sh
-install: composer install --no-interaction
-before_script: ./dev/travis/before_script.sh
+  - composer config --global http-basic.repo.magento.com "6bcab73547992e59b92029c8769ea480" "d3392607f894de249e13cbbcb5c21aad"
+install:
+  - composer install --no-interaction
+before_script:
+  - chmod +x dev/travis/before_script.sh
+  - ./dev/travis/before_script.sh
+
 script:
   # Set arguments for variants of phpunit based tests; '|| true' prevents failing script when leading test fails
   - test $TEST_SUITE = "functional" && TEST_FILTER='dev/tests/functional/testsuites/Magento/Mtf/TestSuite/InjectableTests.php' || true
